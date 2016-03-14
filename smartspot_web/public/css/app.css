@@ -1,0 +1,26 @@
+body {
+	padding-top: 70px;
+}
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
+}
+
+.footer {
+	text-align: center;
+	height: 200px;
+	line-height: 70px;
+}
+
+.authentication-widget {
+	background-color: #f8f8f8;
+	width: 350px;
+	margin: 70px auto;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.navbar-brand {
+	font-family: 'Yanone Kaffeesatz';
+	font-size: 1.8em;
+}
