@@ -1,6 +1,6 @@
 angular.module('smartSpot')
-	.factory('Session', function ($resource, RESTApiPath) {
-		return $resource(RESTApiPath + '/sessions/:id', {id: '@id'}, {
+	.factory('Session', function ($resource, ServerPath) {
+		return $resource(ServerPath + '/sessions/:id', {id: '@id'}, {
 			'update': {'method': 'PATCH'}
 		});
 	});

@@ -3,6 +3,12 @@ angular.module('smartSpot')
 		$.material.init();
 		$rootScope.logged_in = false;
 		$rootScope.username = '';
+
+		$rootScope.logout = function() {
+			store.remove('smartspot_token');
+			$rootScope.update_user();
+			$state.go('main.login');
+		}
 		$rootScope.update_user = function() {
 			token = store.get('smartspot_token');
 			if (token) {
