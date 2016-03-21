@@ -24,4 +24,20 @@ angular.module('smartSpot')
                 controller: 'ControlPanelCtrl',
                 templateUrl: 'views/main/control-panel/control-panel.html'
             })
+            .state('main.new_parking', {
+                url: '/parkings/new',
+                params: {
+                    mode: 'new'
+                },
+                controller: 'ParkingFormCtrl',
+                templateUrl: 'views/main/parking-form/parking-form.html'
+            })
+            .state('main.edit_parking', {
+                url: '/parkings/:id/edit',
+                params: {
+                    mode: 'edit'
+                },
+                controller: 'ParkingFormCtrl',
+                templateUrl: 'views/main/parking-form/parking-form.html'
+            })
     });

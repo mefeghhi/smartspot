@@ -1,1 +1,19 @@
-Control Panel
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-primary" ui-sref="main.new_parking">Create New Parking</button>
+		</div>
+	</div>
+	<div ng-repeat="parking in parkings">
+		<div class="row">
+			<div class="col-xs-12">
+				<a ui-sref="main.edit_parking({id: parking.id})">
+					<h3>{{parking.name}}</h3>
+				</a>
+				<p>{{parking.address}}</p>
+				<p>{{parking.description}}</p>
+				
+			</div>
+		</div>
+	</div>
+</div>

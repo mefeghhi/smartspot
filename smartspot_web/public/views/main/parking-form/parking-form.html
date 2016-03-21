@@ -1,0 +1,51 @@
+<div class="container">
+	<h3 ng-if="mode == 'new'">Create New Parking</h3>
+	<h3 ng-if="mode == 'edit'">Edit Parking</h3>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="name" ng-model='parking.name' placeholder="Name of the parking">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">Address</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="address" ng-model='parking.address' placeholder="Address of the parking">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Description</label>
+			<div class="col-sm-6">
+				<textarea class="form-control" rows="2" id="description" ng-model='parking.description' placeholder="Working hours, limitations, etc."></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">Number of Sensors</label>
+			<div class="col-sm-6">
+				<select class="form-control" ng-model='number_of_sensors' ng-change="number_of_sensors_changed()" ng-options="item.toString() for item in [2, 4, 8, 16, 32, 64, 128]">
+				</select>
+			</div>
+		</div>
+		<div ng-repeat='spot in parking.spots track by $index'>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Sensor #{{$index + 1}} :: Label</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="address" ng-model='spot.label'>
+				</div>
+				<label for="name" class="col-sm-2 control-label">Default Status</label>
+				<div class="col-sm-2">
+					<select class="form-control" ng-model='spot.status' ng-options="boolToStr(item) for item in [true, false]">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button ng-if="mode == 'new'" type="submit" class="btn btn-primary" ng-click='submit_new_parking()'>Create</button>
+				<button ng-if="mode == 'edit'" type="submit" class="btn btn-primary" ng-click='submit_edited_parking()'>Submit</button>
+				<button ng-if="mode == 'edit'" type="submit" class="btn btn-danger" ng-click='delete_parking()'>Delete</button>
+			</div>
+		</div>
+	</form>
+</div>
