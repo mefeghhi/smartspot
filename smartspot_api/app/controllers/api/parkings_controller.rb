@@ -5,6 +5,7 @@ class Api::ParkingsController < ApplicationController
 		p = Parking.new(parking_params)
 		p.technician = Technician.find_by_username(@username)
 		p.set_spots(parking_spots['spots'])
+		p.set_key()
 		p.save
 		render(:nothing => true, :status => 200)
 	end
@@ -32,12 +33,43 @@ class Api::ParkingsController < ApplicationController
 		render(:nothing => true, :status => 200)
 	end
 
+	def download_main_driver
+		found = Parking.find_by_id(params[:id])
+		if check_logged_in_manually(params[:token])
+			send_data found.get_main_driver_code,  :filename => "main_driver.py"
+		else
+			render(:nothing => true, :status => 401)
+		end
+	end
+
+	def download_test_driver
+		found = Parking.find_by_id(params[:id])
+		if check_logged_in_manually(params[:token])
+			send_data found.get_test_driver_code,  :filename => "test_driver.py"
+		else
+			render(:nothing => true, :status => 401)
+		end
+	end
+
+	def update_sensors
+		found = Parking.find_by_id(update_sensors_params['parking_id'])
+		if found.update_sensors(update_sensors_params[:key], update_sensors_params[:updated_sensors])
+			render(:nothing => true, :status => 200)
+		else
+			render(:nothing => true, :status => 401)
+		end
+	end
+
 	def parking_params
 		params.permit(:name, :address, :description)
 	end
 
 	def parking_spots
- 		params.permit(:spots => [:label, :status])
+ 		params.permit(:spots => [:label])
+	end
+
+	def update_sensors_params
+		params.permit(:parking_id, :key, :updated_sensors => [:id, :value])
 	end
 
 end

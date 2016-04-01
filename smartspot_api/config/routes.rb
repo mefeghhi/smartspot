@@ -2,8 +2,14 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   namespace :api, :defaults => {:format => :json} do
-      resources(:sessions, :only => [:create])
-      resources(:parkings, :only => [:create, :index, :show, :update, :destroy])
+    resources(:sessions, :only => [:create])
+    resources(:parkings, :only => [:create, :index, :show, :update, :destroy])
+    post 'parkings/:id/update_sensors' => "parkings#update_sensors"
+  end
+
+  namespace :api do
+    get 'parkings/:id/download_main_driver' => "parkings#download_main_driver"
+    get 'parkings/:id/download_test_driver' => "parkings#download_test_driver"
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

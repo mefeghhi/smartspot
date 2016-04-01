@@ -4,7 +4,9 @@ angular.module('smartSpot')
 			restrict: 'E',
 			templateUrl: 'directives/navbar/navbar.html',
 			replace: true,
-			scope: {},
+			scope: {
+				title: '='
+			},
 			link: function($scope, element, attribute) {
 			}
 		};

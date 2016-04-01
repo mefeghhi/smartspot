@@ -1,6 +1,7 @@
 angular.module('smartSpot')
-	.controller('AuthenticationCtrl', function($scope, $rootScope, store, Session, $state) {
+	.controller('AuthenticationCtrl', function($scope, $rootScope, store, Session, $state, $stateParams) {
 		$scope.user = {};
+		$rootScope.title = $stateParams.title;
 		$scope.login_submit = function() {
 			var s = new Session($scope.user);
 			s.$save(function (response, headers) {

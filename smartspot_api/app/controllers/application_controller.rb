@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
 		token = get_authorization_token
 		if (token.nil?)
 			@username = nil
-			return true
+			return false
 		end
 		begin
 			decoded_token = JWT.decode(token, @hmac_secret, true, {:algorithm => 'HS512'})
@@ -24,6 +24,20 @@ class ApplicationController < ActionController::API
 			return true
 		rescue Exception => e
 		 	render(:nothing => true, :status => 401)
+			return false
+		end
+	end
+
+	def check_logged_in_manually(token)
+		if (token.nil?)
+			@username = nil
+			return false
+		end
+		begin
+			decoded_token = JWT.decode(token, @hmac_secret, true, {:algorithm => 'HS512'})
+			@username = decoded_token[0]['username']
+			return true
+		rescue Exception => e
 			return false
 		end
 	end

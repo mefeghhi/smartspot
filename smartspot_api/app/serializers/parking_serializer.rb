@@ -8,8 +8,8 @@ class ParkingSerializer < ActiveModel::Serializer
 	def free_spots
 		result = 0
 		for spot in object.spots
-			unless spot.status
-				result = result + 1
+			if spot.status == 1
+				result += 1
 			end
 		end
 		return result

@@ -16,18 +16,25 @@ angular.module('smartSpot')
             })
             .state('main.login', {
                 url: '/login',
+                params: {
+                    title: 'Login'
+                },
                 controller: 'AuthenticationCtrl',
                 templateUrl: 'views/main/authentication/authentication.html'
             })
             .state('main.control_panel', {
                 url: '/control_panel',
                 controller: 'ControlPanelCtrl',
+                params: {
+                    title: 'Control Panel'
+                },
                 templateUrl: 'views/main/control-panel/control-panel.html'
             })
             .state('main.new_parking', {
                 url: '/parkings/new',
                 params: {
-                    mode: 'new'
+                    mode: 'new',
+                    title: 'Create New Parking'
                 },
                 controller: 'ParkingFormCtrl',
                 templateUrl: 'views/main/parking-form/parking-form.html'
@@ -35,9 +42,23 @@ angular.module('smartSpot')
             .state('main.edit_parking', {
                 url: '/parkings/:id/edit',
                 params: {
-                    mode: 'edit'
+                    mode: 'edit',
+                    title: 'Edit Parking'
                 },
                 controller: 'ParkingFormCtrl',
                 templateUrl: 'views/main/parking-form/parking-form.html'
+            })
+            .state('main.install_parking', {
+                url: '/parkings/:id/install',
+                params: {
+                    title: 'Parking Setup'
+                },
+                controller: 'ParkingSetupCtrl',
+                templateUrl: 'views/main/parking-setup/parking-setup.html'
+            })
+             .state('mobile', {
+                url: '/mobile',
+                controller: 'MobileCtrl',
+                templateUrl: 'views/mobile/mobile.html'
             })
     });

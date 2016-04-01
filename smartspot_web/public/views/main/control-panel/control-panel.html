@@ -1,18 +1,21 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<button class="btn btn-primary" ui-sref="main.new_parking">Create New Parking</button>
+			<button class="btn btn-danger btn-fab add-parking-btn" ui-sref="main.new_parking"><i class="fa fa-plus"></i></button>
 		</div>
 	</div>
 	<div ng-repeat="parking in parkings">
 		<div class="row">
-			<div class="col-xs-12">
-				<a ui-sref="main.edit_parking({id: parking.id})">
-					<h3>{{parking.name}}</h3>
-				</a>
-				<p>{{parking.address}}</p>
-				<p>{{parking.description}}</p>
-				
+			<div class="col-md-10 parking-item">
+				<div class="parking-left"><i class="flaticon-home"></i></div>
+				<div class="parking-middle">
+					<span class="badge">{{parking.total_spots}}</span>
+					<a class="setup-link" ui-sref="main.install_parking({id: parking.id})"><i class="fa fa-cog"></i></a>
+					<a ui-sref="main.edit_parking({id: parking.id})">
+						<strong>{{parking.name}}</strong> 
+					</a>
+					<span class="lighter"> - {{parking.address}}</span>	
+				</div>
 			</div>
 		</div>
 	</div>

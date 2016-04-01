@@ -6,7 +6,8 @@ class CreateParkings < ActiveRecord::Migration
 			t.string('name')
 			t.string('address')
 			t.string('description')
-			
+			t.string('key')
+
 			t.timestamps(:null => false)
 		end
 		add_index(:parkings, 'technician_id')

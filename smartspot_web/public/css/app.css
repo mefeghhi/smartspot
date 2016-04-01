@@ -1,6 +1,8 @@
 body {
-	padding-top: 70px;
+	padding-top: 120px;
+	background-color: white;
 }
+
 .btn:focus,.btn:active:focus,.btn.active:focus,
 .btn.focus,.btn:active.focus,.btn.active.focus {
     outline: none;
@@ -22,6 +24,240 @@ body {
 }
 
 .navbar-brand {
-	font-family: 'Yanone Kaffeesatz';
+	font-family: 'Yanone Kaffeesatz' !important;
 	font-size: 1.8em;
+}
+.website.navbar {
+	min-height: 110px;
+}
+.website.navbar-default {
+	background: #222D31;
+}
+.website .title-wrapper {
+	position: relative;
+	top: 30px;
+}
+.website .title-wrapper .title {
+	position: relative;
+    top: 26px;
+    font-size: 20px;
+}
+@media (max-width: 1199px) {
+	.website.navbar .navbar-brand {
+	    height: 110px !important;
+	    padding: 5px !important;
+	    margin-left: 0px !important;
+	}
+}
+.add-parking-btn {
+	position: fixed !important;
+	bottom: 50px !important; /* Adjust to where you want it */
+	right: 50px !important; /* Adjust to where you want it */
+	z-index: 9999 !important;
+}
+.add-parking-btn i {
+	position: relative;
+	top: 2px;
+	left: 1px;
+}
+.parking-item {
+	overflow: hidden;
+}
+
+.parking-item .lighter {
+	color: #aaa;
+}
+.parking-item .badge {
+	// background-color: #FF9800;
+	float: right;
+}
+.parking-item .parking-left {
+	width: 20%;
+	padding-right: 10px;
+	float: left;
+	text-align: right;
+	height: 80px;
+	line-height: 80px;
+	position: relative;
+	right: 15px;
+}
+.parking-item .parking-middle {
+	width: 80%;
+	float: left;
+	border-bottom: 1px solid #ddd;
+	padding: 30px 10px 30px 5px;
+}
+
+.parking-item .parking-middle .setup-link {
+	float: right;
+    font-size: 25px;
+    height: 20px;
+    position: relative;
+    top: -8px;
+    margin: 0px 10px;
+}
+.parking-item .parking-right {
+	width: 10%;
+	float: left;
+	text-align: right;
+	border-bottom: 1px solid #ddd;
+	padding: 30px 10px 30px 5px;
+}
+.download-link {
+	font-size: 1.5em;
+}
+.code {
+	font-family: courier new;
+	background-color: #eee;
+	font-weight: 700;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+/* mobile */
+.mobile.navbar {
+	min-height: 60px;
+}
+.mobile.navbar .navbar-brand {
+	padding: 15px;
+}
+.mobile.navbar-default {
+	background: #38474F;
+}
+.app-title {
+	font-size: 1.8em;
+	font-family: 'Yanone Kaffeesatz' !important;
+    -webkit-transition: left 0.5s ease, opacity 0.5s ease-out;
+	-moz-transition: left 0.5s ease, opacity 0.5s ease-out;
+	-o-transition: left 0.5s ease, opacity 0.5s ease-out;
+	transition: left 0.5s ease, opacity 0.5s ease-out;
+}
+.app-title.active {
+	left: 0px;
+	opacity: 1;
+}
+.app-title.faden_right {
+	left: 20px;
+	opacity: 0;
+	display: none;
+}
+.app-title.faden_left {
+	left: -20px;
+	opacity: 0;
+}
+.back-btn {
+	color: white;
+	top: 7px;
+
+}
+.back-btn:hover, .back-btn:focus {
+	color: white;
+}
+.back-btn i {
+	float: left;
+	cursor: pointer;
+	left: -20px;
+	font-size: 20px !important;
+    -webkit-transition: left 0.5s ease, opacity 0.5s ease-out;
+	-moz-transition: left 0.5s ease, opacity 0.5s ease-out;
+	-o-transition: left 0.5s ease, opacity 0.5s ease-out;
+	transition: left 0.5s ease, opacity 0.5s ease-out;
+	opacity: 0;
+}
+.back-btn i.active {
+	left: 0px;
+    opacity: 1;
+}
+.parking-card {
+	background: white;
+	padding: 5px 15px;
+	margin: 4px;
+	border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 0px 0px 3px #ccc;
+}
+.parking-card .address {
+	color: #888;
+}
+
+.parking-card .badge {
+	background: #009688;
+	float: right;
+}
+
+.parking-card .badge.all_taken {
+	background: #F44336;
+}
+.spot-wrapper{
+	height: 88px;
+	padding:4px;
+}
+.spot {
+	height: 80px;
+	border-radius: 4px;
+	background: white;
+	text-align: center;
+	color: white;
+	-webkit-transition: background-color 0.5s ease, width 0.5s ease;
+	-moz-transition: background-color 0.5s ease, width 0.5s ease;
+	-o-transition: background-color 0.5s ease, width 0.5s ease;
+	transition: background-color 0.5s ease, width 0.5s ease;
+}
+.spot.busy {
+	background-color: #F44336;
+}
+.spot.free {
+	background-color: #009688;
+}
+.spot.unknown {
+	background-color: #80929a;
+}
+
+.spot h3 {
+	position: relative;
+	top: 30px;
+}
+
+.screen {
+	overflow: hidden;
+}
+.page {
+	background-color: #eee;
+	min-height: 100%;
+	position: absolute;
+	top: 0px;
+	opacity: 0;
+	-webkit-transition: height 0.5s ease, left 0.5s ease, right 0.5s ease, opacity 0.5s ease-out;
+	-moz-transition: height 0.5s ease, left 0.5s ease, right 0.5s ease, opacity 0.5s ease-out;
+	-o-transition: height 0.5s ease, left 0.5s ease, right 0.5s ease, opacity 0.5s ease-out;
+	transition: height 0.5s ease, left 0.5s ease, right 0.5s ease, opacity 0.5s ease-out;
+	padding-bottom: 30px;
+}
+.parking-info {
+	padding: 70px 0px 10px;
+	background-color: #465A63;
+	color: white;
+}
+.parkings-list {
+	padding: 65px 10px 30px 10px;
+}
+.spots-list {
+	padding: 0px 10px;
+}
+.page.active {
+	opacity: 1;
+    left: 0px;
+	right: 0px;
+}
+
+.gone_left {
+	left: -315px;
+	right: 315px;
+	// height:0px;
+	// overflow: hidden;
+}
+
+.gone_right {
+	left: 315px;
+	right: -315px;
+	// overflow: hidden;
 }

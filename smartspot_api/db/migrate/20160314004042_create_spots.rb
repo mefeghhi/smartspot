@@ -4,8 +4,7 @@ class CreateSpots < ActiveRecord::Migration
 			t.references(:parking)
 
 			t.string('label')
-			t.boolean('status', :default => false)
-			t.integer('sensed_distance')
+			t.integer('sensed_distance', :default => -2)
 			t.string('sensor_id')
 			
 			t.timestamps(:null => false)

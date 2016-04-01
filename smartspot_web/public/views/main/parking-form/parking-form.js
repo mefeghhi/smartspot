@@ -2,16 +2,15 @@ angular.module('smartSpot')
 	.controller('ParkingFormCtrl', function($scope, $rootScope, Parking, $state, $stateParams) {
 		$rootScope.confirm_logged_in();
 		$scope.mode = $stateParams.mode;
+		$rootScope.title = $stateParams.title;
 		$scope.parking = {
 			name: "",
 			address: "",
 			description: "",
 			spots: [{
-				label: "1",
-				status: false
+				label: "1"
 			},{
-				label: "2",
-				status: false
+				label: "2"
 			}]
 		};
 		$scope.number_of_sensors = 2;
@@ -28,8 +27,7 @@ angular.module('smartSpot')
 			$scope.parking.spots = [];
 			for (var i = 0; i < $scope.number_of_sensors; i++) {
 				var spot = {
-					label: (i + 1).toString(),
-					status: false
+					label: (i + 1).toString()
 				};
 				$scope.parking.spots.push(spot);
 			}
@@ -73,5 +71,8 @@ angular.module('smartSpot')
 				alert("Error in server. Please look at the console for more details.");
 				console.log(error);
 			});
+		};
+		$scope.cancel = function() {
+			$state.go('main.control_panel');
 		};
 	});

@@ -1,4 +1,4 @@
-<div class='navbar navbar-default navbar-fixed-top'>
+<div class='website navbar navbar-default navbar-fixed-top'>
 	<div class='container'>
 		<div class='navbar-header'>
 			<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
@@ -7,15 +7,19 @@
 				<span class='icon-bar'></span>
 				<span class='icon-bar'></span>
 			</button>
-			<a class='navbar-brand' ui-sref="main.control_panel">SmartSpot</a>
+			<div class="title-wrapper">
+				<span class="navbar-brand"><i class="flaticon-transport"></i></span>
+				<a class='navbar-brand' ui-sref="main.control_panel">SmartSpot</a>
+				<span class="navbar-brand">| &nbsp;{{$root.title}}</span>
+			</div>
 		</div>
 		<div id='navbar' class='navbar-collapse collapse' aria-expanded='false' style='height: 1px;'>
 			<ul class='nav navbar-nav navbar-right' ng-if='!$root.logged_in'>
 				<li><a ui-sref='main.login'>Login</a></li>
 			</ul>
 			<ul class='nav navbar-nav navbar-right' ng-if='$root.logged_in'>
-				<li><p testid="user_email_after_login" class="navbar-text">{{$root.username}}</p></li>
-				<li><a href="#" ng-click="$root.logout()">Log out</a></li>
+				<li><a href=""><i class="fa fa-user"></i>&nbsp;&nbsp;{{$root.username}}</a></li>
+				<li><a href="#" ng-click="$root.logout()"><i class="fa fa-lock"></i>&nbsp;&nbsp;Log out</a></li>
 			</ul>
 		</div>
 	</div>

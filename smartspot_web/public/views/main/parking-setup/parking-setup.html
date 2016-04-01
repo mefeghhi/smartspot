@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>Setup Instructions</h1>
+			<h2>Requirements</h2>
+			<ul>
+				<li>RaspberryPi 2</li>
+				<li><strong>{{parking.spots.length}}</strong> HC-SR04 ultrasonic sensors</li>
+				<li><strong>{{parking.spots.length}} x 1</strong> multiplexer (or a multiplexer with more channels)</li>
+				<li>one 1 k&#8486; (or more) resistor</li>
+			</ul>
+			<h2>Wiring</h2>
+			<p>The following sketch shows the wiring model for a parking with 1024 ultrasonic sensors. For parkings with less sensors, start connecting the multiplexer select pins to the RaspberryPi's GPIO02 onwards. </p>
+			<br><br>
+			<div class="row">
+				<div class="col-sm-8">
+					<img src="img/wiring.jpg" style="width: 100%; height: auto;">
+				</div>
+			</div>
+			<br><br>
+			<p>Use the following pin map to find GPIO pins on the RaspberryPi.</p>
+			<div class="row">
+				<div class="col-sm-6">
+					<img src="img/rpi-pins.png" style="width: 100%; height: auto;">
+				</div>
+			</div>
+			<h2>Download the Driver</h2>
+			<p><a class="download-link btn btn-raised btn-primary" ng-href="{{main_link}}"><i class="fa fa-download"></i> Main Driver</a><a class="download-link btn btn-raised btn-primary" ng-href="{{test_link}}"><i class="fa fa-download"></i> Test Driver</a></p>
+			<p>* <strong>Main Driver:</strong> This is the main driver that reads all sensors of the parking and sends the data over to the central server.</p>
+			<p>* <strong>Test Driver:</strong> This is a driver which can be used for testing purposes. This driver does not read sensors, but only sends fake and random data over to the server.</p>
+			<h2>Run the Driver</h2>
+			<ul>
+				<li>Transfer the driver into the RaspberryPi</li>
+				<li>Make it executable: <span class="code">$ sudo chmod +x driver.py</span></li>
+				<li>Run the driver: <span class="code">$ ./driver.py</span></li>
+			</ul>
+		</div>
+	</div>
+</div>
