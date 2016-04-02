@@ -95,7 +95,7 @@ class Parking < ActiveRecord::Base
 		code += "    pulse_duration = pulse_end - pulse_start\n"
 		code += "    return round(pulse_duration * 17150, 2)\n"
 		code += "\n"
-		code += "REQUEST_PATH = 'http://localhost:3000" + "/api/parkings/" + self.id.to_s + "/update_sensors'\n"
+		code += "REQUEST_PATH = 'http://199.116.235.151:3000" + "/api/parkings/" + self.id.to_s + "/update_sensors'\n"
 		code += "PARKING_ID = " + self.id.to_s + "\n"
 		code += "KEY = '" + self.key.to_s + "'\n"
 		sensor_ids = []
@@ -142,7 +142,7 @@ class Parking < ActiveRecord::Base
 		code += "import time\n"
 		code += "import requests\n"
 		code += "\n"
-		code += "REQUEST_PATH = 'http://localhost:3000" + "/api/parkings/" + self.id.to_s + "/update_sensors'\n"
+		code += "REQUEST_PATH = 'http://199.116.235.151:3000" + "/api/parkings/" + self.id.to_s + "/update_sensors'\n"
 		code += "PARKING_ID = " + self.id.to_s + "\n"
 		code += "KEY = '" + self.key.to_s + "'\n"
 		sensor_ids = []

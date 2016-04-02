@@ -218,13 +218,13 @@ body {
 }
 
 .screen {
-	overflow: hidden;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+	overflow-x: hidden;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 60px;
+	bottom: 0;
 }
 .page {
 	background-color: #eee;
@@ -239,15 +239,20 @@ body {
 	padding-bottom: 30px;
 }
 .parking-info {
-	padding: 70px 0px 10px;
+	padding: 15px 0px 10px;
 	background-color: #465A63;
 	color: white;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 1000;
 }
 .parkings-list {
-	padding: 65px 10px 30px 10px;
+	padding: 10px;
 }
 .spots-list {
-	padding: 0px 10px;
+	padding: 77px 10px;
+	z-index: 0;
 }
 .page.active {
 	opacity: 1;
@@ -258,12 +263,15 @@ body {
 .gone_left {
 	left: -315px;
 	right: 315px;
-	// height:0px;
-	// overflow: hidden;
+	// display: none;
+	position:absolute;
+	visibility: hidden;
 }
 
 .gone_right {
+	// display: none;
 	left: 315px;
 	right: -315px;
-	// overflow: hidden;
+	position:absolute;
+	visibility: hidden;
 }

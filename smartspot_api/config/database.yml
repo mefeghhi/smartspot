@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: smartspot_api_user
+  username: smartspot_user
   password: secret
-  socket: /tmp/mysql.sock
+  host: 127.0.0.1
 
 development:
   <<: *default
