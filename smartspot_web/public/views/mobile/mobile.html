@@ -7,43 +7,45 @@
 		</div>
 	</div>
 </div>
-<div class="container screen"> 
-	<div class="page" ng-class="{'active': mode == 'list', 'gone_left': mode == 'item'}">
-		<div class="parkings-list">
-			<div ng-repeat="parking in parkings track by $index">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="parking-card" ng-click="show_parking($index)">
-							<h4>{{parking.name}}
-								<span ng-if="parking.free_spots > 0" class="badge">
-									{{parking.free_spots}}
-								</span>
-								<span ng-if="parking.free_spots == 0" class="badge all_taken">
-									No Free Spots
-								</span>
-							</h4>
-							<p class="address">{{parking.address}}</p>
+<div class="container">
+	<div class="screen">
+		<div class="page" ng-class="{'active': mode == 'list', 'gone_left': mode == 'item'}">
+			<div class="parkings-list">
+				<div ng-repeat="parking in parkings track by $index">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="parking-card" ng-click="show_parking($index)">
+								<h4>{{parking.name}}
+									<span ng-if="parking.free_spots > 0" class="badge">
+										{{parking.free_spots}}
+									</span>
+									<span ng-if="parking.free_spots == 0" class="badge all_taken">
+										No Free Spots
+									</span>
+								</h4>
+								<p class="address">{{parking.address}}</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="page" ng-class="{'gone_right': mode == 'list', 'active': mode == 'item'}">
-		<div class="parking-info">
-			<div class="container">
-				<p><strong>{{parking.address}}</strong></p>
-				<p>{{parking.description}}</p>
+		<div class="page" ng-class="{'gone_right': mode == 'list', 'active': mode == 'item'}">
+			<div class="parking-info">
+				<div class="container">
+					<p><strong>{{parking.address}}</strong></p>
+					<p>{{parking.description}}</p>
+				</div>
+			</div>
+			<div class="spots-list">
+				<div ng-repeat="spot in parking.spots">
+					<div class="col-xs-3 spot-wrapper">
+						<div class="spot" ng-class="{'busy': spot.status == 0, 'free': spot.status == 1, 'unknown': spot.status == -1}"> 
+							<h3>{{spot.label}}</h3>
+						</div>
+					</div>	
+				</div>
 			</div>
 		</div>
-		<div class="spots-list">
-			<div ng-repeat="spot in parking.spots">
-				<div class="col-xs-3 spot-wrapper">
-					<div class="spot" ng-class="{'busy': spot.status == 0, 'free': spot.status == 1, 'unknown': spot.status == -1}"> 
-						<h3>{{spot.label}}</h3>
-					</div>
-				</div>	
-			</div>
-		</div>
-	</div>
+	</div> 
 </div>
