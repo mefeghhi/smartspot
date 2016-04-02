@@ -11,7 +11,7 @@ public class ParkingWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if (Uri.parse(url).getHost().endsWith("youtube.com")) {
+        if (Uri.parse(url).getHost().endsWith("199.116.235.151")) {
             return false;
         }
 
