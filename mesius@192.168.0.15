@@ -1,0 +1,95 @@
+import RPi.GPIO as GPIO
+import random
+import time
+import requests
+
+GPIO.cleanup()
+GPIO.setmode(GPIO.BCM)
+SEL = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+TRIG = 12
+ECHO = 13
+for pin in SEL:
+    GPIO.setup(pin, GPIO.OUT)
+GPIO.setup(TRIG, GPIO.OUT)
+GPIO.setup(ECHO, GPIO.IN)
+
+GPIO.output(TRIG, False)
+time.sleep(1)
+
+def to_bool_array(i):
+    str = bin(i)[2:]
+    if len(str) < 10:
+        str = (10 - len(str)) * '0' + str
+    result = []
+    m = {
+        '1': True,
+        '0': False
+    }
+    for c in str:
+        result.append(m[c])
+    return result
+
+def select_sensor(i):
+    value_array = to_bool_array(i)
+    for i in range(0, len(SEL)):
+        pin = SEL[i]
+        value = value_array[len(SEL) - 1 - i]
+        GPIO.output(pin, value)
+
+def trigger_pulse():
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+
+def read_sensor(i):
+    select_sensor(i)
+    run = 0
+    while GPIO.input(ECHO) == 1:
+        continue
+    pulse_start = time.time()
+    trigger_pulse()
+    while GPIO.input(ECHO) == 0 and run < 500:
+        pulse_start = time.time()
+        run += 1
+    if run == 500:
+        return -1
+    while GPIO.input(ECHO) == 1:
+        pulse_end = time.time()
+    pulse_duration = pulse_end - pulse_start
+    return round(pulse_duration * 17150, 2)
+
+REQUEST_PATH = 'http://199.116.235.151:3000/api/parkings/2/update_sensors'
+PARKING_ID = 2
+KEY = '0Di1I-q8Kd5cSKSVOckRwFAelm7pMyo3CM6KiULvXgbTcp0SMmYncY7Sm8l9-hNXny1VutHYI3dftoSkeItXEw'
+SENSOR_IDS = ['5iBz0UF8-D7HhRjAdGvwRg', 'UGe_zdh-5vzoQ4Sk2VmksQ', 'Fe1BMRKixwgZOTsiBsTldQ', 'zilXP08Y7cA0JCed9OmiFw', 'z17f7h7-L_eF1IuOXj_aIQ', 'E-XJ6WuaHxG1er7Ja-yuTw', 'FEr-m77pPTjg_sKb6Coj6g', 'CDUZQ46gOY-MM5jGKz68ew', 'r4RydYX4tomADnAvWULvAA', 'NmymkMaIBJyCD4rw_o-Fgg', '01WU9SQJUfcOSjzMt2jhkw', 'ZzkD-qeSG4t1PU2_h2AmWw', 'QwxUvtntUvjMcwSL4u1UHg', 'mLG9FZFYCaNrEFxtHV8CLA', 'M9ZmCAQTD_PCn0ypE3a7pg', 'nKOHGvxiA0Fdd0mQ6xzbAg']
+SENSORS = []
+for ID in SENSOR_IDS:
+    SENSORS.append({
+        'id': ID,
+        'value': -2
+        })
+
+DATA = {
+    'parking_id': PARKING_ID,
+    'key': KEY,
+    'updated_sensors': []   
+}
+while True:
+    DATA['updated_sensors'] = []
+    for i in range(0, len(SENSOR_IDS)):
+        new_value = read_sensor(i)
+        old_value = SENSORS[i]['value']
+        should_send = False
+        if old_value == -2 or abs(new_value - old_value) > 10:
+            should_send = True
+            SENSORS[i]['value'] = new_value
+            DATA['updated_sensors'].append(SENSORS[i])
+            
+    print 'Sending update for', len(DATA['updated_sensors']), 'sensors'
+    try:
+        if requests.post(REQUEST_PATH, json = DATA).ok:
+            print 'Response: OK'
+        else:
+            print 'Response: Error'
+    except:
+        print 'Connection Error...'
