@@ -131,8 +131,8 @@ class Parking < ActiveRecord::Base
         code += "                print 'Response: OK'\n"
         code += "            else:\n"
         code += "                print 'Response: Error'\n"
-        code += "         except:\n"
-        code += "             print 'Connection Error...'\n"
+        code += "        except:\n"
+        code += "            print 'Connection Error...'\n"
         code += "    else:\n"
         code += "        print 'No update detected'\n"
         return code
