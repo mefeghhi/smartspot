@@ -1,6 +1,6 @@
 body {
-	padding-top: 120px;
-	background-color: white;
+	padding-top: 65px;
+	background-color: #eee;
 }
 
 .btn:focus,.btn:active:focus,.btn.active:focus,
@@ -23,32 +23,32 @@ body {
 	box-shadow: 0px 0px 9px rgba(10, 8, 8, 0.18);
 }
 
+
 .navbar-brand {
 	font-family: 'Yanone Kaffeesatz' !important;
-	font-size: 1.8em;
+	font-size: 1.7em;
 }
-.website.navbar {
-	min-height: 110px;
+.page-title {
+	font-family: Helvetica !important;
+	font-size: 17px;
 }
 .website.navbar-default {
-	background: #222D31;
+	background: #38474F;
 }
 .website .title-wrapper {
 	position: relative;
-	top: 30px;
 }
 .website .title-wrapper .title {
 	position: relative;
-    top: 26px;
     font-size: 20px;
 }
-@media (max-width: 1199px) {
-	.website.navbar .navbar-brand {
-	    height: 110px !important;
-	    padding: 5px !important;
-	    margin-left: 0px !important;
-	}
-}
+// @media (max-width: 1199px) {
+// 	.website.navbar .navbar-brand {
+// 	    height: 110px !important;
+// 	    padding: 5px !important;
+// 	    margin-left: 0px !important;
+// 	}
+// }
 .add-parking-btn {
 	position: fixed !important;
 	bottom: 50px !important; /* Adjust to where you want it */
@@ -63,7 +63,34 @@ body {
 .parking-item {
 	overflow: hidden;
 }
+.mobile-map-container .ui-gmap-google-map {
+	position: absolute;
+	height: 100%;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
 
+.mobile-map-container .angular-google-map-container { 
+	position: absolute;
+	height: 100%;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+}
+.website-map-container .angular-google-map-container { 
+	height: 400px;
+}
+.marker-labels {
+	background-color: white;
+	opacity: 1;
+	padding: 1px 3px;
+	font-weight: 700;
+	border-radius: 2px;
+	box-shadow: 0px 0px 2px;
+}
 .parking-item .lighter {
 	color: #aaa;
 }
@@ -118,13 +145,17 @@ body {
 	min-height: 60px;
 }
 .mobile.navbar .navbar-brand {
-	padding: 15px;
+	top: 6px;
+	height: 50px;
+    padding: 10px 15px;
+    margin-left: 0px !important;
 }
 .mobile.navbar-default {
 	background: #38474F;
 }
 .app-title {
 	font-size: 1.8em;
+	display: none;
 	font-family: 'Yanone Kaffeesatz' !important;
     -webkit-transition: left 0.5s ease, opacity 0.5s ease-out;
 	-moz-transition: left 0.5s ease, opacity 0.5s ease-out;
@@ -133,6 +164,7 @@ body {
 }
 .app-title.active {
 	left: 0px;
+	display: block;
 	opacity: 1;
 }
 .app-title.faden_right {
@@ -145,27 +177,35 @@ body {
 	opacity: 0;
 }
 .back-btn {
-	color: white;
-	top: 7px;
-
-}
-.back-btn:hover, .back-btn:focus {
-	color: white;
-}
-.back-btn i {
 	float: left;
-	cursor: pointer;
-	left: -20px;
-	font-size: 20px !important;
-    -webkit-transition: left 0.5s ease, opacity 0.5s ease-out;
-	-moz-transition: left 0.5s ease, opacity 0.5s ease-out;
-	-o-transition: left 0.5s ease, opacity 0.5s ease-out;
-	transition: left 0.5s ease, opacity 0.5s ease-out;
-	opacity: 0;
+	color: white;
+	padding-top: 5px;
+	display: none;
+	font-size: 23px;
+	line-height: 23px;
+	top: 7px;
+    padding: 15px 0px 15px 15px;
+    position: relative;
 }
-.back-btn i.active {
-	left: 0px;
-    opacity: 1;
+.back-btn:hover, .back-btn:visited, .back-btn:focus {
+	color: white;
+}
+.back-btn.active {
+	display: block;
+	cursor: pointer;
+}
+.mobile .navbar-header {
+	width: 100%;
+}
+.map-icon {
+	font-size: 35px;
+	float: right;
+	color: white;
+	padding-top: 5px;
+	cursor: pointer;
+}
+.map-icon:hover, .map-icon:visited, .map-icon:focus {
+	color: white;
 }
 .parking-card {
 	background: white;

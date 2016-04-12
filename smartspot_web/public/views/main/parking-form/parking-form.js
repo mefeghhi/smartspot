@@ -1,5 +1,5 @@
 angular.module('smartSpot')
-	.controller('ParkingFormCtrl', function($scope, $rootScope, Parking, $state, $stateParams) {
+	.controller('ParkingFormCtrl', function(uiGmapGoogleMapApi, $scope, $rootScope, Parking, $state, $stateParams) {
 		$rootScope.confirm_logged_in();
 		$scope.mode = $stateParams.mode;
 		$rootScope.title = $stateParams.title;
@@ -7,6 +7,8 @@ angular.module('smartSpot')
 			name: "",
 			address: "",
 			description: "",
+			latitude: "53.5237529",
+			longitude: "-113.5241747",
 			spots: [{
 				label: "1"
 			},{
@@ -14,13 +16,39 @@ angular.module('smartSpot')
 			}]
 		};
 		$scope.number_of_sensors = 2;
+		$scope.map = { center: { latitude: 53.5237529, longitude: -113.5241747 }, zoom: 14 };
+		$scope.marker = {
+			id: 0,
+			coords: {
+				latitude: 53.5237529,
+				longitude: -113.5241747
+			},
+			options: { draggable: true },
+			events: {
+				dragend: function (marker, eventName, args) {
+					var lat = marker.getPosition().lat();
+					var lon = marker.getPosition().lng();
+					$scope.parking.latitude = lat.toString();
+					$scope.parking.longitude = lon.toString();
+					$scope.marker.options = {
+						draggable: true,
+						labelContent: "",
+						labelAnchor: "100 0",
+						labelClass: "marker-labels"
+					};
+				}
+			}
+		};
 
 		if ($scope.mode == 'edit') {
 			Parking.get({id: $stateParams.id}, function(response) {
 				$scope.parking = response;
+				$scope.marker.coords.latitude = Number($scope.parking.latitude);
+				$scope.marker.coords.longitude = Number($scope.parking.longitude);
 				$scope.number_of_sensors = $scope.parking.spots.length;
 			});
 		}
+
 		$scope.boolToStr = function(arg) {return arg ? 'Busy' : 'Free'};
 
 		$scope.number_of_sensors_changed = function() {

@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20160314004042) do
     t.integer  "technician_id", limit: 4
     t.string   "name",          limit: 255
     t.string   "address",       limit: 255
+    t.string   "latitude",      limit: 255
+    t.string   "longitude",     limit: 255
     t.string   "description",   limit: 255
     t.string   "key",           limit: 255
     t.datetime "created_at",                null: false

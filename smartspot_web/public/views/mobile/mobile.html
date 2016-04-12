@@ -1,15 +1,17 @@
 <div class='mobile navbar navbar-default navbar-fixed-top'>
 	<div class='container'>
 		<div class='navbar-header'>
-			<a class="back-btn navbar-brand" ng-click="back_to_list()"><i class="fa fa-chevron-left" ng-class="{'active': mode == 'item'}"></i></a>
-			<span ng-class="{'active': mode == 'list', 'faden_right': mode == 'item'}" class='app-title navbar-brand'>SmartSpot</span>
-			<span ng-class="{'active': mode == 'item', 'faden_left': mode == 'list'}" class='app-title navbar-brand'>{{parking.name}}</span>
+			<a class="back-btn" ng-class="{'active': mode != 'list'}" ng-click="back_to_list()"><i class="fa fa-chevron-left"></i></a>
+			<span ng-class="{'active': mode == 'list', 'faden_right': mode != 'list'}" class='app-title navbar-brand'>SmartSpot</span>
+			<span ng-class="{'active': mode == 'item', 'faden_left': mode != 'item'}" class='app-title navbar-brand'>{{parking.name}}</span>
+			<span ng-class="{'active': mode == 'map', 'faden_left': mode != 'map'}" class='app-title navbar-brand'>Map</span>
+			<a class="map-icon" ng-click="show_map()"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
 		</div>
 	</div>
 </div>
 <div class="container">
 	<div class="screen">
-		<div class="page" ng-class="{'active': mode == 'list', 'gone_left': mode == 'item'}">
+		<div class="page" ng-class="{'active': mode == 'list', 'gone_left': mode != 'list'}">
 			<div class="parkings-list">
 				<div ng-repeat="parking in parkings track by $index">
 					<div class="row">
@@ -30,7 +32,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="page" ng-class="{'gone_right': mode == 'list', 'active': mode == 'item'}">
+		<div class="page" ng-class="{'gone_right': mode != 'item', 'active': mode == 'item'}">
 			<div class="parking-info">
 				<div class="container">
 					<p><strong>{{parking.address}}</strong></p>
@@ -47,6 +49,11 @@
 					</div>	
 				</div>
 			</div>
+		</div>
+		<div class="page mobile-map-container" ng-class="{'gone_right': mode != 'map', 'active': mode == 'map'}">
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+					<ui-gmap-marker ng-repeat="m in markers" coords="m.coords" options="m.options" events="m.events" idkey="m.id"></ui-gmap-marker>
+			</ui-gmap-google-map>
 		</div>
 	</div> 
 </div>

@@ -1,5 +1,5 @@
 class ParkingSerializer < ActiveModel::Serializer
-	attributes :id, :name, :address, :description, :total_spots, :free_spots
+	attributes :id, :name, :address, :latitude, :longitude, :description, :total_spots, :free_spots
 
 	def total_spots
 		object.spots.size

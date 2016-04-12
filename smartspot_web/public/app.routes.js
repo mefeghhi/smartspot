@@ -1,6 +1,10 @@
 angular.module('smartSpot')
-    .config(function($locationProvider, $stateProvider, $httpProvider, jwtInterceptorProvider, $urlRouterProvider) {
-        
+    .config(function($locationProvider, $stateProvider, $httpProvider, jwtInterceptorProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+            v: '3.20', //defaults to latest 3.X anyhow
+            libraries: 'weather,geometry,visualization'
+        });
         jwtInterceptorProvider.tokenGetter = function(store) {
             return store.get('smartspot_token');
         };

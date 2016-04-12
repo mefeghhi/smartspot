@@ -61,7 +61,7 @@ class Api::ParkingsController < ApplicationController
 	end
 
 	def parking_params
-		params.permit(:name, :address, :description)
+		params.permit(:name, :address, :latitude, :longitude, :description)
 	end
 
 	def parking_spots

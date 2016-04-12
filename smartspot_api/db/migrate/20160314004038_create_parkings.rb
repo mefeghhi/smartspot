@@ -5,6 +5,8 @@ class CreateParkings < ActiveRecord::Migration
 			
 			t.string('name')
 			t.string('address')
+			t.string('latitude')
+			t.string('longitude')
 			t.string('description')
 			t.string('key')
 
